@@ -32,30 +32,31 @@ export function HomepageCarousels() {
     const fetchModelsAndPrompts = async () => {
       try {
         setLoading(true)
-        
+
         // Fetch available models
-        const modelsResponse = await fetch('http://localhost:8000/api/models')
-        if (!modelsResponse.ok) throw new Error('Failed to fetch models')
+        const modelsResponse = await fetch("http://localhost:8000/api/models")
+        if (!modelsResponse.ok) throw new Error("Failed to fetch models")
         const modelsData = await modelsResponse.json()
-        
+
         setModels(modelsData)
-        
+
         // Fetch prompts for each model
         const promptsData: Record<string, Prompt[]> = {}
-        
+
         for (const model of modelsData) {
-          const promptsResponse = await fetch(`http://localhost:8000/api/prompts/by-model/${encodeURIComponent(model)}?limit=6`)
+          const promptsResponse = await fetch(
+            `http://localhost:8000/api/prompts/by-model/${encodeURIComponent(model)}?limit=6`,
+          )
           if (promptsResponse.ok) {
             const modelPrompts = await promptsResponse.json()
             promptsData[model] = modelPrompts
           }
         }
-        
+
         setPromptsByModel(promptsData)
         setLoading(false)
-        
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load prompts')
+        setError(err instanceof Error ? err.message : "Failed to load prompts")
         setLoading(false)
       }
     }
@@ -78,7 +79,7 @@ export function HomepageCarousels() {
     return (
       <div className="text-center py-16">
         <p className="text-red-400 mb-4">Error loading prompts: {error}</p>
-        <button 
+        <button
           onClick={() => window.location.reload()}
           className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors"
         >
@@ -101,13 +102,7 @@ export function HomepageCarousels() {
       {models.map((model) => {
         const prompts = promptsByModel[model] || []
         // Always show the carousel even if no prompts, so user knows the model exists
-        return (
-          <ModelCarousel
-            key={model}
-            model={model}
-            prompts={prompts}
-          />
-        )
+        return <ModelCarousel key={model} model={model} prompts={prompts} />
       })}
     </div>
   )
