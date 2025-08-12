@@ -56,7 +56,7 @@ export function HeroSection() {
       </div>
 
       {/* Content - Lower z-index than overlay */}
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
+      <div className="relative z-10 max-w-5xl mx-auto text-center mt-20">
         {/* Main Headline */}
         <h1 className="text-6xl md:text-8xl leading-[0.9] mb-4">
             <span className="font-light text-white/95 tracking-tight">One prompt</span>
@@ -85,6 +85,15 @@ export function HeroSection() {
           <p className="text-sm text-gray-200 leading-relaxed font-bold text-red-400">
           Mordor is where you learn how.
           </p>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mb-12">
+          <div className="inline-block bg-gradient-to-r from-red-600/20 to-orange-600/20 border border-red-500/30 rounded-full px-8 py-4 backdrop-blur-sm">
+            <p className="text-lg font-bold text-white">
+              <span className="text-red-400">STOP THE GATEKEEP.</span> Share your prompts today.
+            </p>
+          </div>
         </div>
 
         {/* CTA Buttons */}

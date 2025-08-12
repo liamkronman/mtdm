@@ -1,9 +1,8 @@
-import { VideoCard } from "@/components/video-card"
 import { CharacterCard } from "@/components/character-card"
 import { HeroSection } from "@/components/hero-section"
 import { StatsBar } from "@/components/stats-bar"
 import { CategorySection } from "@/components/category-section"
-import { featuredPrompts } from "@/data/featured-prompts"
+import { HomepageCarousels } from "@/components/homepage-carousels"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -53,33 +52,14 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Viral AI Videos Section */}
+      {/* AI Model Carousels */}
       <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-bold mb-2">Viral AI Videos</h2>
-            <p className="text-gray-400">See the prompts behind the most viral AI-generated content</p>
-          </div>
-          <Link href="/browse?category=videos" className="text-red-400 hover:text-red-300 transition-colors">
-            View All →
-          </Link>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Featured Prompts by Model</h2>
+          <p className="text-xl text-gray-400">Discover the best prompts for each AI model</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
-          {featuredPrompts.map((prompt) => (
-            <VideoCard
-              key={prompt.id}
-              title={prompt.title}
-              videoUrl={prompt.videoUrl}
-              description={prompt.description}
-              tags={prompt.tags}
-              views={prompt.views}
-              likes="180K"
-              model="Veo3"
-              promptPreview={prompt.prompt.description.substring(0, 100) + "..."}
-            />
-          ))}
-        </div>
+        
+        <HomepageCarousels />
       </section>
 
       {/* AI Characters Section */}
