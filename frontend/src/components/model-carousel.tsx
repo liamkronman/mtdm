@@ -172,10 +172,10 @@ export function ModelCarousel({ model, prompts = [] }: ModelCarouselProps) {
           <p className="text-gray-400">Discover the best prompts for {model}</p>
         </div>
         <Link
-          href={`/browse?model=${encodeURIComponent(model)}`}
+          href={`/playground?model=${encodeURIComponent(model)}`}
           className="text-red-400 hover:text-red-300 transition-colors"
         >
-          View All →
+          Try {model} →
         </Link>
       </div>
 
@@ -226,7 +226,7 @@ export function ModelCarousel({ model, prompts = [] }: ModelCarouselProps) {
                       : "w-full"
                 }`}
               >
-                <Link href={`/playground?prompt=${prompt.id}`}>
+                <Link href={`/playground?prompt=${prompt.id}&model=${encodeURIComponent(prompt.model)}`}>
                   <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 border border-gray-700/50 rounded-xl overflow-hidden hover:border-red-500/50 transition-all duration-300 group/card">
                     <div className="aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
                       {prompt.image_url ? (
